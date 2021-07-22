@@ -2,30 +2,34 @@ import React from 'react'
 import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Logo } from '../../assets'
 
-const Login = ({ navigation }) => {
+const RegisterDistributor = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image source={Logo} style={styles.logo} />
             <View style={{ marginBottom: 15 }}>
+                <TextInput placeholder="Nama" style={styles.text} />
                 <TextInput placeholder="Email" style={styles.text} />
+                <TextInput multiline={true} numberOfLines={4} placeholder="Alamat Lengkap" style={styles.text} />
+                <TextInput placeholder="No Telepon" style={styles.text} />
                 <TextInput secureTextEntry={true} placeholder="Password" style={styles.text} />
+                <TextInput secureTextEntry={true} placeholder="Konfirmasi Password" style={styles.text} />
             </View>
-            <Button title="Login" color="#2b4599" />
+            <Button title="Register" color="#2b4599" />
             <View style={styles.register}>
                 <Text style={{ color: 'blue' }}
                     onPress={() => navigation.navigate('RegisterAgent')}>
-                    Agent Baru ?
+                    Agent baru ?
                 </Text>
                 <Text style={{ color: 'blue' }}
-                    onPress={() => navigation.navigate('RegisterDistributor')}>
-                    Register sebagai distributor
+                    onPress={() => navigation.navigate('Login')}>
+                    Login
                 </Text>
             </View>
         </View>
     )
 }
 
-export default Login
+export default RegisterDistributor
 
 const styles = StyleSheet.create({
     container: {
@@ -44,9 +48,9 @@ const styles = StyleSheet.create({
     text: {
         marginBottom: 15,
         textAlign: 'center',
-        borderWidth: 0.6,
+        borderWidth: 0.4,
         borderColor: '#8484fa',
-        borderRadius: 100
+        borderRadius: 4
     },
     register: {
         marginTop: 7,

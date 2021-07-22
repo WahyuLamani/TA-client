@@ -2,37 +2,36 @@ import React from 'react'
 import { Button, Image, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Logo } from '../../assets'
 
-const Login = ({ navigation }) => {
+const RegisterAgent = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image source={Logo} style={styles.logo} />
-            <View style={{ marginBottom: 15 }}>
+            <View style={styles.directional}>
                 <TextInput placeholder="Email" style={styles.text} />
-                <TextInput secureTextEntry={true} placeholder="Password" style={styles.text} />
+                <Button title="Login" color="#2b4599" onPress={() => alert('hello')} />
             </View>
-            <Button title="Login" color="#2b4599" />
             <View style={styles.register}>
                 <Text style={{ color: 'blue' }}
-                    onPress={() => navigation.navigate('RegisterAgent')}>
-                    Agent Baru ?
+                    onPress={() => navigation.navigate('Login')}>
+                    Login
                 </Text>
                 <Text style={{ color: 'blue' }}
                     onPress={() => navigation.navigate('RegisterDistributor')}>
-                    Register sebagai distributor
+                    Register sebagai Distributor
                 </Text>
             </View>
         </View>
     )
 }
 
-export default Login
+export default RegisterAgent
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         backgroundColor: '#B3B3FF',
-        padding: 50,
+        padding: 15,
     },
     logo: {
         display: "flex",
@@ -46,11 +45,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         borderWidth: 0.6,
         borderColor: '#8484fa',
-        borderRadius: 100
+        borderRadius: 50
     },
     register: {
         marginTop: 7,
         flexDirection: 'row',
         justifyContent: 'space-between'
+    },
+    directional: {
+        marginBottom: 15,
     }
 })

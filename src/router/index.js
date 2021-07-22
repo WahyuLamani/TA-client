@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home, Akun, Splash, Order, Login } from '../page'
+import { Home, Akun, Splash, Order, Login, RegisterAgent, RegisterDistributor, AgentForm } from '../page'
 import { BottomNavigator } from '../komponen';
 
 const Tab = createBottomTabNavigator();
@@ -20,9 +20,12 @@ const Main = () => {
 
 const Router = () => {
     return (
-        <Stack.Navigator initialRouteName='Splash'>
+        <Stack.Navigator initialRouteName='Login'>
             <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+            <Stack.Screen name="RegisterAgent" component={RegisterAgent} options={{ headerShown: false }} />
+            <Stack.Screen name="AgentForm" component={AgentForm} options={{ headerShown: false }} />
+            <Stack.Screen name="RegisterDistributor" component={RegisterDistributor} options={{ headerShown: false }} />
             <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
         </Stack.Navigator>
     )
