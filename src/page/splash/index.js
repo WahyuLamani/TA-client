@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useEffect } from 'react'
 import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native'
 import { Logo, SplashScreen } from '../../assets'
@@ -5,9 +6,15 @@ import { Logo, SplashScreen } from '../../assets'
 const Splash = ({ navigation }) => {
 
     useEffect(() => {
-        setTimeout(() => {
-            navigation.replace('Main')
-        }, 2000)
+        const _session = async () => {
+            const login = await AsyncStorage.getItem('token')
+            if (login) {
+                navigation.replace('Main')
+            } else {
+                navigation.replace('Login')
+            }
+        }
+        _session()
     }, [navigation])
 
 

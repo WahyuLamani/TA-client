@@ -2,23 +2,31 @@ import React, { useState } from 'react'
 import { Image, Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Logo } from '../../assets'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
     const doLogin = () => {
         axios.post('http://103.56.149.35:10000/api/login', {
             email,
             password
-        }).then(function (response) {
-            // handle success
-            console.log(JSON.stringify(response.data));
+        }).then(function (val) {
+            console.log(val.data);
+            if (val.data.errors) {
+                alert(JSON.stringify(val.data.errors))
+            } else {
+                console.log(val)
+                AsyncStorage.setItem('user', JSON.stringify(val.data.user))
+                AsyncStorage.setItem('token', (val.data.access_token))
+                AsyncStorage.setItem('userable', JSON.stringify(val.data.user.userable))
+                // AsyncStorage.setItem('user', JSON.stringify(val.data.user))
+                navigation.replace('Main')
+            }
         })
             .catch(function (error) {
-                // handle error
                 console.log(error)
-                console.log(error.message);
+                alert("email atau password salah");
             });
     };
 
@@ -30,7 +38,7 @@ const Login = ({ navigation }) => {
                 <TextInput placeholder="Email" onChangeText={(value) => setEmail(value)} style={styles.text} />
                 <TextInput placeholder="Password" onChangeText={(value) => setPassword(value)} style={styles.text} secureTextEntry={true} />
             </View>
-            <Button title="login" color="#2b4599" onPress={doLogin} />
+            <Button title="login" color="#2b4599" onPress={(doLogin)} />
             <View style={styles.register}>
                 <Text style={{ color: 'blue' }}
                     onPress={() => navigation.navigate('RegisterAgent')}>
